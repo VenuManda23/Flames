@@ -35,14 +35,21 @@ function Home() {
             index=(index+count-1)%data.length;
             data.splice(index,1)
         }
-        setResult(data[0])
+        const finalResult = data[0];
+
+        setResult(finalResult);
+
         axios.post("https://backend-flames.onrender.com/flames",{
             name:name,
             partner_name:pname,
-            result:data[0]
+            result:finalResult
         })
-        .then((res)=>{console.log(res.data)})
-        .catch((err)=>{console.log(err)})
+        .then((res)=>{
+            console.log(res.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     };
 
     return (

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function Home() {
     const [name, setName] = useState("");
@@ -35,6 +36,13 @@ function Home() {
             data.splice(index,1)
         }
         setResult(data[0])
+        axios.post("https://backend-flames.onrender.com/flames",{
+            name:name,
+            partner_name:pname,
+            result:data[0]
+        })
+        .then((res)=>{console.log(res.data)})
+        .catch((err)=>{console.log(err)})
     };
 
     return (
